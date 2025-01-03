@@ -1,0 +1,14 @@
+<div x-data="tabs" x-init="$watch('tabs', () => currentTab = tabs[0])" x-cloak class="">
+    <!-- The $watch function will set the first tab as the active tab. -->
+    <div class="flex gap-6">
+        <template x-for="tab in tabs">
+            <div @click="currentTab = tab" x-text="tab" class="" :class="currentTab === tab ? 'text-teal-600 font-semibold bg-white' : 'text-gray-500'"></div>
+            <!-- Here, we dynamically create the tab navigation items based on the child 'tabs' that are registered. -->
+        </template>
+    </div>
+
+    <div class="px-5 py-2">
+        {{ slot }}
+        <!-- All of the <c-tab /> items will go here. -->
+    </div>
+</div>

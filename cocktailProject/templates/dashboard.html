@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
-</head>
-<body>
-    <c-button backgroundColor="bg-red-600"
-              hoverColor="hover:bg-red-500">
-        Hello
-    </c-button>
-    <c-button backgroundColor="bg-blue-600"
-              hoverColor="hover:bg-blue-500">
-        Hello
-    </c-button>
-    <div class="container mx-auto mt-5 flex flex-col gap-3 px-2">
-        <c-card title="Trees" url="https://www.google.com/">
-            We have the best trees
-        </c-card>
-        
-        <c-card title="Spades" url="https://www.google.com/">
-            The best spades in the land
-        </c-card>
-        <c-card title="Trees" url="https://www.google.com/">
-            We have the best trees
-        </c-card>
-        
-        <c-card title="Spades" url="https://www.google.com/">
-            The best spades in the land
-        </c-card>
-        <c-card title="Trees" url="https://www.google.com/">
-            We have the best trees
-        </c-card>
-        
-        <c-card title="Spades" url="https://www.google.com/">
-            The best spades in the land
-        </c-card>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="//unpkg.com/alpinejs" defer></script>
+        <title>Document</title>
+    </head>
+    <body class="container mx-auto">
+        <c-navigation
+            url_one = "one"
+            url_two = "two"
+            url_three = "three"/>
+        <div class="px-4 sm:px-6 lg:px-8">
+            <c-button type="danger">Delete</c-button>
+            <c-button type="primary">Submit</c-button>
+            <c-button type="secondary">Submit</c-button>
+            <c-button type="secondary">Submit</c-button>
+        </div>
+        <div class="px-4 sm:px-6 lg:px-8">
+            <nav class="flex gap-2 text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 -mb-px">
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tab One</button>
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tab Two</button>
+                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tab Three</button>
+            </nav>
+            <div class="text-slate-500">
+                content
+            </div>
+        </div>
+        <c-tabs>
+            <c-tab name="Tab 1">Tab 1 content</c-tab>
+            <c-tab name="Tab 2">Tab 2 content</c-tab>
+            <c-tab name="Tab 3">Tab 3 content</c-tab>
+        </c-tabs>
+        <style>
+            [x-cloak] { display: none !important; }
+        </style>
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('tabs', () => ({
+                    tabs: [],
+                    currentTab: null,
+                    isCurrent(tab) {
+                        return this.currentTab === tab
+                    },
+                    register(name) {
+                        this.tabs.push(name)
+                    }
+                }))
+            })
+        </script>
+    </body>
 </html>

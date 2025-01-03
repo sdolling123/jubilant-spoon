@@ -1,0 +1,62 @@
+<header class="relative z-50 w-full flex-none text-sm/6 font-semibold text-slate-900">
+    <nav aria-label="Global" class="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative flex justify-between items-center py-[2.125rem]">
+            <span class="">AppName</span>
+            <div class="hidden sm:flex gap-10">
+                <a class="font-semibold" href="{% url url_one %}">Option 1</a>
+                <a class="font-semibold" href="{% url url_two %}">Option 2</a>
+                <a class="font-semibold" href="{% url url_three %}">Option 3</a>
+            </div>
+            <a class="hidden sm:block" href="#">Logout</a>
+            <button id="toggleModal" type="button" class="-my-1 -mr-1 ml-6 flex size-8 items-center justify-center sm:hidden"><span class="sr-only">Open navigation</span><svg viewBox="0 0 24 24" class="size-6 stroke-slate-900"><path d="M3.75 12h16.5M3.75 6.75h16.5M3.75 17.25h16.5" fill="none" stroke-width="1.5" stroke-linecap="round"></path></svg></button>
+        </div>
+    </nav>
+</header>
+    <nav class="mobile-menu fixed top-0 right-0 z-50 min-w-80 bg-white h-screen text-base/7 text-slate-900 translate-x-full transition-all ease-in-out duration-700">
+        <div class="flex flex-col items-start">
+            <div class="px-8 py-6 w-full">
+                <div class="flex flex-row justify-between">
+                    <div>AppName</div>
+                    <button id="closeNav" type="button" class="absolute top-5 right-6 flex size-8 items-center justify-center"><span class="sr-only">Close navigation</span><svg class="h-3.5 w-3.5 overflow-visible stroke-slate-900" fill="none" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><path d="M0 0L14 14M14 0L0 14"></path></svg></button>
+                </div>
+            </div>
+            <div class="px-8 py-6 border-1 border-y border-solid w-full">
+                    <a class="block w-full py-2 mb-4 font-semibold" href="{% url url_one %}">Option </a>
+                    <a class="block w-full py-2 mb-4 font-semibold" href="{% url url_two %}">Option </a>
+                    <a class="block w-full py-2 font-semibold" href="{% url url_three %}">Option </a>
+            </div>
+            <div class="px-8 py-6 w-full">
+                <div class="-my-2 space-y-4">
+                    <a class="block w-full py-2 font-semibold" href="#">Log In</a>
+                    <a class="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 w-full" href="#"><span>Log In</span></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div id="overlay" class="fixed z-20 inset-0 bg-black/20 backdrop-blur-sm opacity-0 pointer-events-none transion-all duration-700"></div>
+
+<script>
+const navElement = document.querySelector('nav.mobile-menu');
+const toggleModal = document.getElementById('toggleModal');
+const closeModal = document.getElementById('closeNav');
+const overlay = document.getElementById('overlay');
+
+toggleModal.addEventListener('click', ()=>{
+    navElement.classList.toggle('translate-x-0')
+    overlay.classList.toggle('opacity-0');
+    overlay.classList.toggle('pointer-events-none');
+})
+
+closeModal.addEventListener('click', ()=>{
+    navElement.classList.toggle('translate-x-0')
+    overlay.classList.toggle('opacity-0');
+    overlay.classList.toggle('pointer-events-none');
+})
+
+overlay.addEventListener('click',()=>{
+    navElement.classList.toggle('translate-x-0')
+    overlay.classList.toggle('opacity-0');
+    overlay.classList.toggle('pointer-events-none');
+})
+</script>
