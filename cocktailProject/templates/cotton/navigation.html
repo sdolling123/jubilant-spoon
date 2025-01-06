@@ -3,9 +3,9 @@
         <div class="relative flex justify-between items-center py-[2.125rem]">
             <span class="">AppName</span>
             <div class="hidden sm:flex gap-10">
-                <a class="font-semibold" href="{% url url_one %}">Option 1</a>
-                <a class="font-semibold" href="{% url url_two %}">Option 2</a>
-                <a class="font-semibold" href="{% url url_three %}">Option 3</a>
+                {% for link in links  %}
+                    <a class="font-semibold" href="{% url link.url %}">{{ link.name }}</a>
+                {% endfor %}
             </div>
             <a class="hidden sm:block" href="#">Logout</a>
             <button id="toggleModal" type="button" class="-my-1 -mr-1 ml-6 flex size-8 items-center justify-center sm:hidden"><span class="sr-only">Open navigation</span><svg viewBox="0 0 24 24" class="size-6 stroke-slate-900"><path d="M3.75 12h16.5M3.75 6.75h16.5M3.75 17.25h16.5" fill="none" stroke-width="1.5" stroke-linecap="round"></path></svg></button>
@@ -21,9 +21,9 @@
                 </div>
             </div>
             <div class="px-8 py-6 border-1 border-y border-solid w-full">
-                    <a class="block w-full py-2 mb-4 font-semibold" href="{% url url_one %}">Option </a>
-                    <a class="block w-full py-2 mb-4 font-semibold" href="{% url url_two %}">Option </a>
-                    <a class="block w-full py-2 font-semibold" href="{% url url_three %}">Option </a>
+                    {% for link in links  %}
+                        <a class="block w-full py-2 mb-4 font-semibold" href="{% url link.url %}">{{ link.name }}</a>
+                    {% endfor %}
             </div>
             <div class="px-8 py-6 w-full">
                 <div class="-my-2 space-y-4">
