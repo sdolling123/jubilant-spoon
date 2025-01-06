@@ -1,6 +1,6 @@
-<div x-data="{ open: false }" 
+<div x-data="{ open: false, title:'', id:'' }" 
      x-on:keydown.window.escape="open = false" 
-     x-on:modal-open.window="open = true" 
+     x-on:modal-open.window="open = true; title = $event.detail.title; creator = $event.detail.id" 
      x-on:modal-close.window="open = false"
      x-show="open" 
      class="relative z-10" 
@@ -35,7 +35,7 @@
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-start">
                     <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                        <slot name="icon">
+                        <slot name="modal_icon">
                             <!-- Default icon -->
                             <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"></path>
@@ -43,29 +43,29 @@
                         </slot>
                     </div>
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">
-                            <slot name="title">Modal Title</slot>
-                        </h3>
-                        <div class="mt-2">
-                            <slot name="body">Default body text goes here.</slot>
-                        </div>
+                        <slot name="modal_title">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">
+                                Delete <span x-text="title"></span>
+                            </h3>
+                        </slot>
+                        <slot name="modal_body">
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">Are you sure you want to remove this item? This action cannot be undone.</p>
+                            </div>
+                        </slot>
                     </div>
                 </div>
             </div>
 
             <!-- Footer Slot -->
-            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                <slot name="footer">
-                    <button type="button" 
-                            class="inline-flex justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto" 
-                            @click="open = false">
-                        Default Action
-                    </button>
-                    <button type="button" 
-                            class="mt-3 inline-flex justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto" 
-                            @click="open = false">
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse items-center sm:px-6">
+                <slot name="modal_footer">
+                    <c-button type="danger"  @click="open = false">
+                        Confirm Delete
+                    </c-button>
+                    <c-button type="secondary"  @click="open = false">
                         Cancel
-                    </button>
+                    </c-button>
                 </slot>
             </div>
         </div>
