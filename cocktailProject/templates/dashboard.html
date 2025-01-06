@@ -12,43 +12,15 @@
             url_one = "one"
             url_two = "two"
             url_three = "three"/>
-        <div class="px-4 sm:px-6 lg:px-8">
-            <c-button type="danger">Delete</c-button>
-            <c-button type="primary">Submit</c-button>
-            <c-button type="secondary">Submit</c-button>
-            <c-button type="secondary">Submit</c-button>
+        <div class="px-4 sm:px-6 lg:px-8 flex flex-col gap-3">
+            {% for item in cocktails_with_ingredients %}
+            <c-card name="{{item.cocktail.name}}" 
+                    creator="{{item.cocktail.creator}}"
+                    type="{{item.cocktail.get_type_display}}"
+                    drink_style="{{item.cocktail.get_style_display}}"
+                    instructions="{{item.cocktail.instructions }}"
+                    :ingredients="item.ingredients"></c-card>
+            {% endfor %}
         </div>
-        <div class="px-4 sm:px-6 lg:px-8">
-            <nav class="flex gap-2 text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 -mb-px">
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tab One</button>
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tab Two</button>
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tab Three</button>
-            </nav>
-            <div class="text-slate-500">
-                content
-            </div>
-        </div>
-        <c-tabs>
-            <c-tab name="Tab 1">Tab 1 content</c-tab>
-            <c-tab name="Tab 2">Tab 2 content</c-tab>
-            <c-tab name="Tab 3">Tab 3 content</c-tab>
-        </c-tabs>
-        <style>
-            [x-cloak] { display: none !important; }
-        </style>
-        <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.data('tabs', () => ({
-                    tabs: [],
-                    currentTab: null,
-                    isCurrent(tab) {
-                        return this.currentTab === tab
-                    },
-                    register(name) {
-                        this.tabs.push(name)
-                    }
-                }))
-            })
-        </script>
     </body>
 </html>
