@@ -17,6 +17,7 @@
             url_two = "two"
             url_three = "three"/>
         <div id="card_list" class="px-4 sm:px-6 lg:px-8 flex flex-col gap-3">
+            <c-search_input></c-search_input>
            {% include "partials/card_list.html" %}
         </div>
         <c-modal>
@@ -25,6 +26,13 @@
     <script>
         document.body.addEventListener('htmx:configRequest', function(evt) {
             evt.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'; // add a new header into the request
+        });
+    </script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('search', {
+                query: ''
+            });
         });
     </script>
 </html>

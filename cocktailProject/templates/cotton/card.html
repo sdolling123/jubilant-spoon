@@ -1,7 +1,11 @@
  <!-- main card container -->
  <div x-cloak
- x-data="{ showSpecs: false }" 
- class=" p-6 bg-white border border-gray-200 rounded-lg shadow transition-all duration-300 ease-in-out"
+ x-data="{ showSpecs: false }"
+ x-show="$store.search.query === '' || 
+        '{{ item.cocktail.name }}'.toLowerCase().includes($store.search.query.toLowerCase()) || 
+        '{{ item.cocktail.type }}'.toLowerCase().includes($store.search.query.toLowerCase()) ||
+        '{{ item.cocktail.style }}'.toLowerCase().includes($store.search.query.toLowerCase())"
+ class="p-6 bg-white border border-gray-200 rounded-lg shadow transition-all duration-300 ease-in-out"
 >
  <!-- card title and control -->
  <div class="flex items-center justify-between">

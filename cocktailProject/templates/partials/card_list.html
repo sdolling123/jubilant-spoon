@@ -1,5 +1,6 @@
 {% for item in cocktails_with_ingredients %}
-<c-card name="{{item.cocktail.name}}" 
+<c-card 
+        name="{{item.cocktail.name}}" 
         creator="{{item.cocktail.creator}}"
         type="{{item.cocktail.get_type_display}}"
         drink_style="{{item.cocktail.get_style_display}}"
