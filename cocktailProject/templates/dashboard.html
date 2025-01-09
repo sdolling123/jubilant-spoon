@@ -1,42 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="//unpkg.com/alpinejs" defer></script>
-        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
-        <title>Document</title>
-        <style>
-            [x-cloak] { display: none !important; }
-        </style>
-    </head>
-    <body class="container mx-auto">
-        <c-navigation :links="{'url': 'one', 'name': 'Home'},{'url': 'two', 'name': 'About'},{'url': 'three', 'name': 'Contact'}"
-            url_one = "one"
-            url_two = "two"
-            url_three = "three"/>
-        <div x-data="{ visibleCount: {{ cocktails_with_ingredients|length }}}" id="card_list" class="px-4 sm:px-6 lg:px-8 flex flex-col gap-3">
-            <c-search_input></c-search_input>
-           {% include "partials/card_list.html" %}
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+    <div x-data="{ visibleCount: {{ cocktails_with_ingredients|length }}}" id="card_list" class="px-4 sm:px-6 lg:px-8 flex flex-col gap-3">
+        <div class="flex justify-end">
+            <c-link button_type="secondary" url="{% url 'create' %}">Add Cocktail</c-link>
         </div>
-        <c-modal>
-        </c-modal>
-    </body>
-    <script>
-        document.body.addEventListener('htmx:configRequest', function(evt) {
-            evt.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'; // add a new header into the request
-        });
-    </script>
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.store('search', {
-                query: '',
-                visibleCount: 0,
-                updateCount(cards) {
-                this.visibleCount = cards.filter(card => card.offsetParent !== null).length;
-                },
-            });
-        });
-    </script>
-</html>
+        <c-search_input></c-search_input>
+    {% include "partials/card_list.html" %}
+    </div>
+    <c-modal>
+    </c-modal>
+{% endblock %}

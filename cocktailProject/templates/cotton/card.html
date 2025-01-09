@@ -71,8 +71,8 @@
      <!-- card footer -->
       <div class="flex justify-center gap-2 text-sm">
           <button x-data="{}" @click="$dispatch('modal-open', {title: '{{ name }}', item_id: '{{ item_id }}'})" {{ attrs }} class="rounded text-sm text-red-700 text-left py-2 px-4 hover:bg-red-100 transition" href="#">Delete</button>
-          <a class="rounded text-sm text-gray-700 text-left py-2 px-4 hover:bg-gray-100 transition" href="#">Edit</a>
-          <a class="rounded text-sm text-gray-700 text-left py-2 px-4 hover:bg-gray-100 transition" href="#">More Details</a>
+          <c-link button_type="secondary" url="#">Edit</c-link>
+          <c-link button_type="secondary" url="#">More Details</c-link>
       </div>
  </div>
 </div>
