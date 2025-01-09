@@ -1,6 +1,7 @@
 <div
-    x-data="{ search: '' }"
-    @input="Alpine.store('search').query = search">
+    x-data="{ search: ''}"
+    @input="Alpine.store('search').query = search"
+    @keyup="visibleCount = document.querySelectorAll('div.card_element:not(.card_invisible)').length;">
     <label for="search" class="block text-sm/6 font-medium text-gray-900 sr-only">Search</label>
     <div class="mt-2">
       <div class="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">

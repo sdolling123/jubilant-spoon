@@ -16,7 +16,7 @@
             url_one = "one"
             url_two = "two"
             url_three = "three"/>
-        <div id="card_list" class="px-4 sm:px-6 lg:px-8 flex flex-col gap-3">
+        <div x-data="{ visibleCount: {{ cocktails_with_ingredients|length }}}" id="card_list" class="px-4 sm:px-6 lg:px-8 flex flex-col gap-3">
             <c-search_input></c-search_input>
            {% include "partials/card_list.html" %}
         </div>
@@ -31,7 +31,11 @@
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.store('search', {
-                query: ''
+                query: '',
+                visibleCount: 0,
+                updateCount(cards) {
+                this.visibleCount = cards.filter(card => card.offsetParent !== null).length;
+                },
             });
         });
     </script>

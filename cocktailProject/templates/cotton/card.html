@@ -1,12 +1,20 @@
  <!-- main card container -->
  <div x-cloak
- x-data="{ showSpecs: false }"
- x-show="$store.search.query === '' || 
-        '{{ item.cocktail.name }}'.toLowerCase().includes($store.search.query.toLowerCase()) || 
-        '{{ item.cocktail.type }}'.toLowerCase().includes($store.search.query.toLowerCase()) ||
-        '{{ item.cocktail.style }}'.toLowerCase().includes($store.search.query.toLowerCase())"
- class="p-6 bg-white border border-gray-200 rounded-lg shadow transition-all duration-300 ease-in-out"
->
+      x-data="{ showSpecs: false, visible: true }"
+      x-effect="visible = $store.search.query === '' || 
+      '{{ name }}'.toLowerCase().includes($store.search.query.toLowerCase()) || 
+      '{{ type }}'.toLowerCase().includes($store.search.query.toLowerCase()) ||
+      '{{ drink_style }}'.toLowerCase().includes($store.search.query.toLowerCase());"
+      x-show="visible"
+      :class="{ 'card_invisible': !visible }"
+      x-transition:enter="ease-out duration-300" 
+      x-transition:enter-start="opacity-0" 
+      x-transition:enter-end="opacity-100" 
+      x-transition:leave="ease-in duration-200" 
+      x-transition:leave-start="opacity-100" 
+      x-transition:leave-end="opacity-0" 
+      class="block card_element p-6 mt-4 bg-white border border-gray-200 rounded-lg shadow transition-all duration-300 ease-in-out"
+    >
  <!-- card title and control -->
  <div class="flex items-center justify-between">
      <div>
@@ -14,7 +22,7 @@
      </div>
      <!-- Menu popup -->
      <div>
-         <button 
+         <button
              @click="showSpecs = !showSpecs"
              class="p-2 rounded hover:bg-gray-100 transition" 
              aria-label="Show specs"
@@ -39,18 +47,20 @@
 
  <!-- specs: ingredients and instructions -->
  <div x-show="showSpecs" 
- x-transition:enter="transition ease-out duration-300" 
- x-transition:enter-start="max-h-0 opacity-0" 
- x-transition:enter-end="max-h-screen opacity-100" 
- x-transition:leave="transition ease-in duration-300" 
- x-transition:leave-start="max-h-screen opacity-100" 
- x-transition:leave-end="max-h-0 opacity-0" 
- class="overflow-hidden">
+      x-transition:enter="transition ease-out duration-300" 
+      x-transition:enter-start="max-h-0 opacity-0" 
+      x-transition:enter-end="max-h-screen opacity-100" 
+      x-transition:leave="transition ease-in duration-300" 
+      x-transition:leave-start="max-h-screen opacity-100" 
+      x-transition:leave-end="max-h-0 opacity-0" 
+      class="overflow-hidden">
      <!-- card divider -->
      <hr class="my-3">
      <div class="mb-3">
         {% for ingredient in ingredients %}
-        <p class="font-normal text-gray-700">{{ ingredient.quantity|floatformat }} {{ ingredient.get_unit_display }} {{ ingredient.ingredient.name }}</p>
+            <p class="font-normal text-gray-700">
+                {{ ingredient.quantity|floatformat }} {{ ingredient.get_unit_display }} {{ ingredient.ingredient.name }}
+            </p>
         {% endfor %}
      </div>
      <div>
