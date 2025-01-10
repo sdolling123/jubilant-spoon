@@ -22,11 +22,11 @@
     </script>
     <script>
         document.addEventListener('alpine:init', () => {
-            Alpine.store('search', {
-                query: '',
-                visibleCount: 0,
-                updateCount(cards) {
-                this.visibleCount = cards.filter(card => card.offsetParent !== null).length;
+            Alpine.store('search', { query: '' });
+            Alpine.store('visibleCount', {
+                count: 0,
+                update() {
+                    this.count = document.querySelectorAll('div.card_element:not(.card_invisible)').length;
                 },
             });
         });

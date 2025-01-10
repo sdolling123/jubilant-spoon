@@ -4,7 +4,8 @@
       x-effect="visible = $store.search.query === '' || 
       '{{ name }}'.toLowerCase().includes($store.search.query.toLowerCase()) || 
       '{{ type }}'.toLowerCase().includes($store.search.query.toLowerCase()) ||
-      '{{ drink_style }}'.toLowerCase().includes($store.search.query.toLowerCase());"
+      '{{ drink_style }}'.toLowerCase().includes($store.search.query.toLowerCase());
+      $store.visibleCount.update();"
       x-show="visible"
       :class="{ 'card_invisible': !visible }"
       x-transition:enter="ease-out duration-300" 

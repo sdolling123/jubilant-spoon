@@ -1,21 +1,25 @@
 <div x-cloak 
      x-data>
     <div>
-        <span>Total: 
-            <span x-text="visibleCount"></span>
+        <span class="text-sm text-gray-600 font-semibold">Total: 
+            <span 
+                x-text="$store.visibleCount.count"
+                ></span>
         </span>
     </div>
             <!-- No Results Found Message -->
             <div 
             x-cloak
-            x-show="visibleCount === 0"
+            x-data
+            x-show="$store.visibleCount.count === 0"
             x-transition:enter="ease-out duration-300" 
             x-transition:enter-start="opacity-0" 
             x-transition:enter-end="opacity-100" 
             x-transition:leave="ease-in duration-50" 
             x-transition:leave-start="opacity-100" 
             x-transition:leave-end="opacity-0" 
-            class="flex items-center justify-center p-6 bg-gray-100 rounded-md border border-gray-300 text-gray-700"
+            class="items-center justify-center p-6 bg-gray-100 rounded-md border border-gray-300 text-gray-700"
+            :class="$store.visibleCount.count === 0 ? 'flex' : 'hidden'"
                 >
             <div class="text-center">
                 <svg 
