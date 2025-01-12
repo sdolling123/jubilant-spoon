@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Create{% endblock title %}
 {% block content %}
+<c-tabs :tabs="['profile', 'dashboard', 'settings']">
+    <c-tab name="profile">1</c-tab>
+    <c-tab name="dashboard">2</c-tab>
+    <c-tab name="settings">3</c-tab>
+</c-tabs>
 {% endblock %}

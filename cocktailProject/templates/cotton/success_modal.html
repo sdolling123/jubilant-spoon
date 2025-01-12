@@ -1,0 +1,70 @@
+<div
+    x-cloak
+    x-data="{ open: true, title:'', item_id: '0' }" 
+     x-on:keydown.window.escape="open = false" 
+     x-on:modal-open.window="open = true; title = $event.detail.title; item_id = $event.detail.item_id" 
+     x-on:modal-close.window="open = false"
+     x-show="open" 
+     class="relative z-10" 
+     aria-labelledby="modal-title" 
+     x-ref="dialog" 
+     aria-modal="true">
+
+    <!-- Modal Background -->
+    <div x-show="open" 
+         x-transition:enter="ease-out duration-300" 
+         x-transition:enter-start="opacity-0" 
+         x-transition:enter-end="opacity-100" 
+         x-transition:leave="ease-in duration-200" 
+         x-transition:leave-start="opacity-100" 
+         x-transition:leave-end="opacity-0" 
+         class="fixed inset-0 bg-gray-500/75 transition-opacity" 
+         aria-hidden="true"></div>
+
+    <!-- Modal Content -->
+    <div class="fixed inset-0 z-10 flex items-end sm:items-center justify-center p-4">
+        <div x-show="open" 
+             x-transition:enter="ease-out duration-300" 
+             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+             x-transition:leave="ease-in duration-200" 
+             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+             class="relative transform overflow-hidden rounded-lg w-full sm:m-auto sm:max-w-md bg-white shadow-xl " 
+             @click.away="open = false">
+            
+            <!-- Header Slot -->
+            <div class="bg-white px-4 pt-5 pb-4">
+                <div class="flex flex-col items-center justify-center">
+                    <button type="button" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="successModal">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 ">
+                        <slot name="modal_icon">
+                            <!-- Default icon -->
+                            <svg aria-hidden="true" class="w-8 h-8 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            <span class="sr-only">Success</span>
+                        </slot>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <slot name="modal_body">
+                            <div class="mt-2">
+                                <p class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Successfully deleted {{ deleted_item }}.</p>
+                            </div>
+                        </slot>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Slot -->
+            <div class="bg-gray-50 px-4 py-3 flex justify-center">
+                <slot name="modal_footer">
+                    <c-button type="primary"  @click="open = false">
+                        Continue
+                    </c-button>
+                </slot>
+            </div>
+        </div>
+    </div>
+</div>
