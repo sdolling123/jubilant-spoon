@@ -2,8 +2,44 @@
 {% block title %}Create{% endblock title %}
 {% block content %}
 <c-tabs :tabs="['profile', 'dashboard', 'settings']">
-    <c-tab name="profile">1</c-tab>
-    <c-tab name="dashboard">2</c-tab>
-    <c-tab name="settings">3</c-tab>
+    <form class="p-3" action="">
+        <c-tab 
+            class="grid sm:grid-cols-2 gap-3"
+            name="profile">
+            {% for field in cocktail_form %}
+            {% if field.name != "instructions" %}
+                <div class="">
+                    <label class="block text-gray-900 font-medium text-sm" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <p class="text-gray-500 text-sm italic ps-1">{{ field.help_text }}</p>
+                {% if field.errors %}
+                    <div class="text-red-500 text-sm font-medium italic ps-1">
+                    {{ field.errors }}
+                    </div>
+                {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        </c-tab>
+        <c-tab name="dashboard">
+            {{ ingredient_form }}
+        </c-tab>
+        <c-tab name="settings">
+            {% for field in cocktail_form %}
+            {% if field.name == "instructions" %}
+                <div class="">
+                    <label class="block text-gray-900 font-medium text-sm" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <p class="text-gray-500 text-sm italic ps-1">{{ field.help_text }}</p>
+                {% if field.errors %}
+                    <div class="text-red-500 text-sm font-medium italic ps-1">
+                    {{ field.errors }}
+                    </div>
+                {% endif %}
+                </div>
+            {% endif %}
+        {% endfor %}
+        </c-tab>
+    </form>
 </c-tabs>
 {% endblock %}

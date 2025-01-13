@@ -10,6 +10,14 @@ class CocktailForm(forms.ModelForm):
         
     name = forms.CharField(label="Name",label_suffix=":",help_text="This is a required field.",error_messages={"required":"Please fill this out"})
     instructions = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}), required=False,)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 block w-full p-2.5'
+        self.fields['creator'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 block w-full p-2.5'
+        self.fields['type'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 appearance-none'
+        self.fields['style'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 appearance-none'
+        self.fields['instructions'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5'
     
 class CocktailIngredientForm(forms.ModelForm):
     class Meta:
