@@ -1,5 +1,5 @@
-<div>
-    <label for="{{ field.id_for_label }}">{{ field.name|title }}</label>
+<div class="{{ class }}">
+    <c-field_label :field="{{ field }}"></c-field_label>
     <div class="grid grid-cols-1 mt-2">
         <input class="outline-gray-300 -outline-offset-1 outline outline-1 text-gray-900 text-base px-3 py-1.5 bg-white rounded-md appearance-none w-full row-start-1 col-start-1 focus:outline-indigo-600 focus:outline-2 focus:-outline-offset-2" 
                 name="{{ field.id_for_label }}" 
@@ -7,7 +7,7 @@
                 {{ attrs }}>
         </input>
     </div>
-    <p class="text-gray-500 text-sm italic ps-1">{{ field.help_text }}</p>
+    <c-help_text :field="{{ field }}"></c-help_text>
     {% if field.errors %}
         <div class="text-red-500 text-sm font-medium italic ps-1">
         {{ field.errors }}

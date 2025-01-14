@@ -17,8 +17,18 @@
         {% endfor %}
 
         </c-tab>
-        <c-tab name="dashboard">
-            {{ ingredient_form }}
+        <c-tab 
+            class="flex"
+            name="dashboard">
+            {% for field in ingredient_form %}
+                {% if field.name == "ingredient" %}
+                    <c-select_field class="flex-grow" :field="{{ field}}"></c-select_field> 
+                {% elif field.name == "quantity" %}
+                    <c-text_field class="shrink" :field="{{ field}}" type="number" ></c-text_field>
+                {% elif  field.name == "unit" %}
+                    <c-select_field :field="{{ field}}"></c-select_field>
+                {% endif %}
+            {% endfor %}
         </c-tab>
         <c-tab name="settings">
             {% for field in cocktail_form %}
