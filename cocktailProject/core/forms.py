@@ -13,11 +13,11 @@ class CocktailForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 block w-full p-2.5'
-        self.fields['creator'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 block w-full p-2.5'
-        self.fields['type'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 appearance-none'
-        self.fields['style'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 appearance-none'
-        self.fields['instructions'].widget.attrs['class'] = 'mt-2 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-indigo-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5'
+        self.fields['name'].widget.attrs['class'] = 'outline-gray-300 -outline-offset-1 outline outline-1 text-gray-900 text-base ps-3 pe-8 py-1.5 bg-white rounded-md appearance-none w-full row-start-1 col-start-1 focus:outline-indigo-600 focus:outline-2 focus:-outline-offset-2'
+        self.fields['creator'].widget.attrs['class'] = 'outline-gray-300 -outline-offset-1 outline outline-1 text-gray-900 text-base ps-3 pe-8 py-1.5 bg-white rounded-md appearance-none w-full row-start-1 col-start-1 focus:outline-indigo-600 focus:outline-2 focus:-outline-offset-2'
+        self.fields['type'].widget.attrs['class'] = 'outline-gray-300 -outline-offset-1 outline outline-1 text-gray-900 text-base ps-3 pe-8 py-1.5 bg-white rounded-md appearance-none w-full row-start-1 col-start-1 focus:outline-indigo-600 focus:outline-2 focus:-outline-offset-2'
+        self.fields['style'].widget.attrs['class'] = 'outline-gray-300 -outline-offset-1 outline outline-1 text-gray-900 text-base ps-3 pe-8 py-1.5 bg-white rounded-md appearance-none w-full row-start-1 col-start-1 focus:outline-indigo-600 focus:outline-2 focus:-outline-offset-2'
+        self.fields['instructions'].widget.attrs['class'] = 'outline-gray-300 -outline-offset-1 outline outline-1 text-gray-900 text-base ps-3 pe-8 py-1.5 bg-white rounded-md appearance-none w-full row-start-1 col-start-1 focus:outline-indigo-600 focus:outline-2 focus:-outline-offset-2'
     
 class CocktailIngredientForm(forms.ModelForm):
     class Meta:
