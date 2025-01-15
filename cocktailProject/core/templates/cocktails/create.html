@@ -18,17 +18,20 @@
 
         </c-tab>
         <c-tab 
-            class="flex"
+            class="flex gap-3 items-center"
             name="dashboard">
             {% for field in ingredient_form %}
                 {% if field.name == "ingredient" %}
                     <c-select_field class="flex-grow" :field="{{ field}}"></c-select_field> 
                 {% elif field.name == "quantity" %}
-                    <c-text_field class="shrink" :field="{{ field}}" type="number" ></c-text_field>
+                    <c-text_field class="flex-1" :field="{{ field}}" type="number" ></c-text_field>
                 {% elif  field.name == "unit" %}
-                    <c-select_field :field="{{ field}}"></c-select_field>
+                    <c-select_field class="flex-1" :field="{{ field }}"></c-select_field>
                 {% endif %}
             {% endfor %}
+            <div class="relative">                
+                <c-menu-popup></c-menu-popup>
+            </div>
         </c-tab>
         <c-tab name="settings">
             {% for field in cocktail_form %}
@@ -39,4 +42,5 @@
         </c-tab>
     </form>
 </c-tabs>
+
 {% endblock %}
